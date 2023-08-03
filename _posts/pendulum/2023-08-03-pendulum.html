@@ -6,53 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <style>
-    * {
-        box-sizing: border-box;
-      }
+        * {
+            box-sizing: border-box;
+        }
     </style>
 </head>
 
 <body>
 
+    <fieldset>
+        <script>
 
+            let angle;
+            let bob;
+            let len;
+            let origin;
+            let w = 0;
+            let a = 0;
+            let gravity;
 
-    <script>
+            function setup() {
+                createCanvas(600, 400);
+                origin = createVector(300, 0);
+                angle = PI / 4;
+                bob = createVector();
+                len = 200;
+            }
 
-        let angle;
-        let bob;
-        let len;
-        let origin;
-        let w = 0;
-        let a = 0;
-        let gravity;
+            function draw() {
+                background(220);
 
-        function setup() {
-            createCanvas(600, 400);
-            origin = createVector(300, 0);
-            angle = PI / 4;
-            bob = createVector();
-            len = 200;
-        }
+                gravity = 100;
+                a = -1 * gravity * sin(angle) / (len * len);
+                w += a;
+                angle += w;
 
-        function draw() {
-            background(220);
+                bob.x = len * sin(angle) + origin.x;
+                bob.y = len * cos(angle) + origin.y;
 
-            gravity = 100;
-            a = -1 * gravity * sin(angle) / (len * len);
-            w += a;
-            angle += w;
+                stroke(0);
+                strokeWeight(8);
+                fill(127);
+                line(origin.x, origin.y, bob.x, bob.y);
+                circle(bob.x, bob.y, 64);
 
-            bob.x = len * sin(angle) + origin.x;
-            bob.y = len * cos(angle) + origin.y;
+            }
+        </script>
+    </fieldset>
 
-            stroke(0);
-            strokeWeight(8);
-            fill(127);
-            line(origin.x, origin.y, bob.x, bob.y);
-            circle(bob.x, bob.y, 64);
-
-        }
-    </script>
 
 </body>
 
