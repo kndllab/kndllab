@@ -29,9 +29,11 @@
         let w = 0;
         let a = 0;
         let gravity;
+        let myCanvas;
 
         function setup() {
-            createCanvas(600,400);
+            myCanvas = select('#defaultCanvas0');
+            myCanvas.position(300, 0);
             origin = createVector(300, 0);
             angle = PI / 4;
             bob = createVector();
@@ -39,7 +41,7 @@
         }
 
         function draw() {
-            background(220);
+            myCanvas.drawingContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
 
             gravity = 100;
             a = (-1 * gravity * sin(angle)) / (len * len);
@@ -49,11 +51,14 @@
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
 
-            stroke(0);
-            strokeWeight(8);
-            fill(255);
-            line(origin.x, origin.y, bob.x, bob.y);
-            circle(bob.x, bob.y, 64);
+            myCanvas.drawingContext.beginPath();
+            myCanvas.drawingContext.moveTo(origin.x, origin.y);
+            myCanvas.drawingContext.lineTo(bob.x, bob.y);
+            myCanvas.drawingContext.stroke();
+
+            myCanvas.drawingContext.beginPath();
+            myCanvas.drawingContext.arc(bob.x, bob.y, 32, 0, 2 * PI);
+            myCanvas.drawingContext.fill();
         }
 
     </script>
