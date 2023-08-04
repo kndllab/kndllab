@@ -20,48 +20,44 @@
     <fieldset>
         <p> 안녕하세요 </p>
     </fieldset>
-    <script class="pend">
+<script class="pend">
 
-        let angle;
-        let bob;
-        let len;
-        let origin;
-        let w = 0;
-        let a = 0;
-        let gravity;
-        let myCanvas;
+    let angle;
+    let bob;
+    let len;
+    let origin;
+    let w = 0;
+    let a = 0;
+    let gravity;
+    let canvas;
 
-        function setup() {
-            myCanvas = select('#defaultCanvas0');
-            myCanvas.position(300, 0);
-            origin = createVector(300, 0);
-            angle = PI / 4;
-            bob = createVector();
-            len = 200;
-        }
+    function setup() {
+        canvas = document.getElementById('defaultCanvas0').getContext('2d');
+        origin = createVector(300, 0);
+        angle = PI / 4;
+        bob = createVector();
+        len = 200;
+    }
 
-        function draw() {
-            myCanvas.drawingContext.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    function draw() {
+        background(220);
 
-            gravity = 100;
-            a = (-1 * gravity * sin(angle)) / (len * len);
-            w += a;
-            angle += w;
+        gravity = 100;
+        a = (-1 * gravity * sin(angle)) / (len * len);
+        w += a;
+        angle += w;
 
-            bob.x = len * sin(angle) + origin.x;
-            bob.y = len * cos(angle) + origin.y;
+        bob.x = len * sin(angle) + origin.x;
+        bob.y = len * cos(angle) + origin.y;
 
-            myCanvas.drawingContext.beginPath();
-            myCanvas.drawingContext.moveTo(origin.x, origin.y);
-            myCanvas.drawingContext.lineTo(bob.x, bob.y);
-            myCanvas.drawingContext.stroke();
+        stroke(0);
+        strokeWeight(8);
+        fill(255);
+        line(origin.x, origin.y, bob.x, bob.y);
+        circle(bob.x, bob.y, 64);
+    }
 
-            myCanvas.drawingContext.beginPath();
-            myCanvas.drawingContext.arc(bob.x, bob.y, 32, 0, 2 * PI);
-            myCanvas.drawingContext.fill();
-        }
-
-    </script>
+</script>
 
 
 </body>
