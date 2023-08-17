@@ -1,15 +1,10 @@
----
-layout: posts
----
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <canvas id="defaultCanvas0" class="pend" width="600" height="400" style="width: 600px; height: 400px;"></canvas>
+    <canvas id="defaultCanvas0" class="p5Canvas" width="600" height="400" style="width: 600px; height: 400px;"></canvas>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
     <style>
@@ -25,44 +20,43 @@ layout: posts
     <fieldset>
         <p> 안녕하세요 </p>
     </fieldset>
-<script class="pend">
+    <script class="pend">
 
-    let angle;
-    let bob;
-    let len;
-    let origin;
-    let w = 0;
-    let a = 0;
-    let gravity;
-    let canvas;
+        let angle;
+        let bob;
+        let len;
+        let origin;
+        let w = 0;
+        let a = 0;
+        let gravity;
 
-    function setup() {
-        canvas = document.getElementById('defaultCanvas0').getContext('2d');
-        origin = createVector(300, 0);
-        angle = PI / 4;
-        bob = createVector();
-        len = 200;
-    }
+        function setup() {
+            createCanvas(600, 400);
+            origin = createVector(300, 0);
+            angle = PI / 4;
+            bob = createVector();
+            len = 200;
+        }
 
-    function draw() {
-        background(220);
+        function draw() {
+            background(220);
 
-        gravity = 100;
-        a = (-1 * gravity * sin(angle)) / (len * len);
-        w += a;
-        angle += w;
+            gravity = 100;
+            a = (-1 * gravity * sin(angle)) / (len * len);
+            w += a;
+            angle += w;
 
-        bob.x = len * sin(angle) + origin.x;
-        bob.y = len * cos(angle) + origin.y;
+            bob.x = len * sin(angle) + origin.x;
+            bob.y = len * cos(angle) + origin.y;
 
-        stroke(0);
-        strokeWeight(8);
-        fill(255);
-        line(origin.x, origin.y, bob.x, bob.y);
-        circle(bob.x, bob.y, 64);
-    }
+            stroke(0);
+            strokeWeight(8);
+            fill(255);
+            line(origin.x, origin.y, bob.x, bob.y);
+            circle(bob.x, bob.y, 64);
+        }
 
-</script>
+    </script>
 
 
 </body>
