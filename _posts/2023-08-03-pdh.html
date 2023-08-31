@@ -13,6 +13,15 @@
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
 
     <script>
+      function setup() {
+            let cnv = createCanvas(600, 400);
+            cnv.parent('canvasContainer');  // 캔버스를 'canvasContainer' div로 이동시킵니다.
+            origin = createVector(300, 0);
+            angle = PI / 4;
+            bob = createVector();
+            len = 200;
+        }
+        
     function setup() {
       createCanvas(600, 400);
     }
