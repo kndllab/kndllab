@@ -1,11 +1,30 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
+
 <body>
-  <p> hello!!! </p>
+
+    <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
+
+    <script>
+    function setup() {
+      createCanvas(600, 400);
+    }
+
+    function draw() {
+      background(220);
+      fill(255, 0, 0);
+      ellipse(mouseX, mouseY, 50, 50);
+    }
+    </script>
+
 </body>
+
 </html>
+ 
