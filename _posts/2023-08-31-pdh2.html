@@ -4,10 +4,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
-  <canvas id="defaultCanvas0" class="p5Canvas" width="600" height="400" style="width: 600px; height: 400px;"></canvas>
+  <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
+
   <script>
     function setup() {
       createCanvas(600, 400);
+      cnv.parent('canvasContainer');  // 캔버스를 'canvasContainer' div로 이동시킵니다.
     }
 
     function draw() {
