@@ -104,11 +104,11 @@ analytics:
 
 # Site Author
 author:
-  name             : "Kndl Lab"
+  name             : "KNDLAB"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "I am **Iron man**"
   location         : "경남과학고등학교"
-  email            :
+  email            : "kndllab@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
