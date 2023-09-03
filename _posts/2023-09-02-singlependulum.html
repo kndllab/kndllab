@@ -11,7 +11,8 @@
 
     <form name="frm">
         <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
-        <input type="number" name="angle">    
+        <input type="submit" value="제출">
+        <input type="number" name="angle">   
     </form>
 
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
@@ -33,7 +34,7 @@
             bob = createVector();
 
 
-            len = document.getElementById("numberInput");
+            len = 200;
         }
 
         function draw() {
