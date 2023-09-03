@@ -31,6 +31,12 @@
             bob = createVector();
         }
 
+        // 숫자 입력 적용 함수
+        function applyInput() {
+            // len 값을 입력 상자에서 가져오기
+            len = parseFloat(document.getElementById("lenInput").value);
+        }
+
         function draw() {
             background(220);
 
@@ -52,11 +58,7 @@
             circle(bob.x, bob.y, 64);
         }
 
-        // 숫자 입력 적용 함수
-        function applyInput() {
-            // len 값을 입력 상자에서 가져오기
-            len = parseFloat(document.getElementById("lenInput").value);
-        }
+        
     </script>
 </body>
 </html>
