@@ -45,7 +45,7 @@
             w += a;
             angle += w;
 
-            document.frm.angle.value = angle*57.2958;
+            document.frm.angle.value = Math.round(angle * 57.2958 * 10) / 10 ;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
