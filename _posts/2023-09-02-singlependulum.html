@@ -9,6 +9,8 @@
 
 <body>
 
+    <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
+
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
 
     <script>
@@ -26,7 +28,9 @@
             origin = createVector(300, 0);
             angle = PI / 4;
             bob = createVector();
-            len = 200;
+
+
+            len = document.getElementById("numberInput");
         }
 
         function draw() {
