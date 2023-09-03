@@ -15,7 +15,7 @@
     <script>
         let angle;
         let bob;
-        let len;
+        let len = 200;
         let origin;
         let w = 0;
         let a = 0;
@@ -40,7 +40,7 @@
             w += a;
             angle += w;
 
-            document.frm.angle.value = Math.round(angle * 57.2958 * 10) / 10 ;
+            document.frm.angle.value ="angle = " + Math.round(angle * 57.2958 * 10) / 10 ;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
