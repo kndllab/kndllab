@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
-
 <body>
-
     <form name="frm">
-        <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
+        <input type="number" name="angle">
+        <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
         <input type="submit" value="제출">
-        <input type="number" name="angle">   
     </form>
-
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
-
     <script>
         let angle;
         let bob;
@@ -32,13 +27,13 @@
             origin = createVector(300, 0);
             angle = PI / 4;
             bob = createVector();
-
-
-            len = 200;
         }
 
         function draw() {
             background(220);
+
+            // len 값을 입력 상자에서 가져오기
+            len = parseFloat(document.getElementById("lenInput").value);
 
             gravity = 100;
             a = (-1 * gravity * sin(angle)) / (len * len);
@@ -57,7 +52,5 @@
             circle(bob.x, bob.y, 64);
         }
     </script>
-
 </body>
-
 </html>
