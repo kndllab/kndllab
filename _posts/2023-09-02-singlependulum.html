@@ -7,14 +7,19 @@
 </head>
 <body>
     <form name="frm">
-        <input type="number" name="angle">
-        <input type="number" id="lenInput" placeholder="len 값을 입력하세요" value="200"> <!-- 초기값 200으로 설정 -->
+        <!-- 각도를 표시할 요소 추가 -->
+        <span id="angleDisplay"></span>
+        <p> len = </p>
+        <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
+        
+        <button type="button" onclick="applyInput()">적용</button>
+        
     </form>
-    <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
+    <div id="canvasContainer"></div>
     <script>
         let angle;
         let bob;
-        let len = 200; // 초기값 200으로 설정
+        let len = 200;
         let origin;
         let w = 0;
         let a = 0;
@@ -22,7 +27,7 @@
 
         function setup() {
             let cnv = createCanvas(600, 400);
-            cnv.parent('canvasContainer');  // 캔버스를 'canvasContainer' div로 이동시킵니다.
+            cnv.parent('canvasContainer');
             origin = createVector(300, 0);
             angle = PI / 4;
             bob = createVector();
@@ -31,15 +36,13 @@
         function draw() {
             background(220);
 
-            // len 값을 입력 상자에서 가져오기
-            len = parseFloat(document.getElementById("lenInput").value);
-
             gravity = 100;
             a = (-1 * gravity * sin(angle)) / (len * len);
             w += a;
             angle += w;
 
-            document.frm.angle.value = Math.round(angle * 57.2958 * 10) / 10 ;
+            // 각도를 표시하는 요소 업데이트
+            document.getElementById("angleDisplay").textContent = "angle = " + Math.round(angle * 57.2958 * 10) / 10;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
@@ -48,7 +51,13 @@
             strokeWeight(8);
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
-            circle(bob.x, bob.y, 64);
+            circle(bob.x, bob.y, 64);x
+        }
+
+        // 숫자 입력 적용 함수
+        function applyInput() {
+            // len 값을 입력 상자에서 가져오기
+            len = parseFloat(document.getElementById("lenInput").value);
         }
     </script>
 </body>
