@@ -34,8 +34,8 @@
         function draw() {
             background(220);
 
-            gravity = 100;
-            a = (-1 * gravity * sin(angle)) / (len * len);
+            gravity = 0.1;
+            a = (-1 * gravity * sin(angle)) / (len);
             w += a;
             angle += w;
 
