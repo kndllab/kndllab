@@ -9,7 +9,10 @@
 
 <body>
 
-    <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
+    <form name="frm">
+        <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
+        <input type="number" name="angle">    
+    </form>
 
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
 
@@ -40,6 +43,8 @@
             a = (-1 * gravity * sin(angle)) / (len * len);
             w += a;
             angle += w;
+
+            document.frm.angle.value = angle;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
