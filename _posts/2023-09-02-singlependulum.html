@@ -9,6 +9,9 @@
 
 <body>
 
+    <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
+    <button id="applyButton">적용</button>
+
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
 
     <script>
@@ -24,7 +27,26 @@
             let cnv = createCanvas(600, 400);
             cnv.parent('canvasContainer');  // 캔버스를 'canvasContainer' div로 이동시킵니다.
             origin = createVector(300, 0);
-            angle = PI / 4;
+
+            // HTML 요소에 대한 참조 가져오기
+            var numberInput = document.getElementById("numberInput");
+            var applyButton = document.getElementById("applyButton");
+
+            // 버튼 클릭 이벤트에 대한 리스너 추가
+            applyButton.addEventListener("click", function () {
+                // 숫자 입력 상자의 값을 가져오기
+                var inputValue = parseFloat(numberInput.value); // 입력값을 부동 소수점 숫자로 파싱
+
+                if (!isNaN(inputValue)) { // 숫자가 유효한지 확인
+                    angle = PI / 4;
+                    alert("입력한 숫자: " + inputValue);
+                    // 또는 다른 작업 수행
+                } else {
+                    alert("올바른 숫자를 입력하세요.");
+                }
+            });
+
+            
             bob = createVector();
             len = 200;
         }
@@ -51,4 +73,3 @@
 </body>
 
 </html>
- 
