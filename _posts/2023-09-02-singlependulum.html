@@ -8,13 +8,13 @@
 <body>
     <form name="frm">
         <input type="number" name="angle">
-        <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
+        <input type="number" id="lenInput" placeholder="len 값을 입력하세요" value="200"> <!-- 초기값 200으로 설정 -->
     </form>
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
     <script>
         let angle;
         let bob;
-        let len = 200;
+        let len = 200; // 초기값 200으로 설정
         let origin;
         let w = 0;
         let a = 0;
