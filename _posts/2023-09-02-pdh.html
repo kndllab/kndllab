@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
-
 <body>
-  <form name="frm">
-  <input type="number" id="numberInput" placeholder="숫자를 입력하세요">
-  </form>
-<div id="canvasContainer"></div>
+    <form name="frm">
+        <input type="number" name="angle">
+        <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
+        <!-- 이 버튼을 사용하여 숫자 입력 적용 -->
+        <button type="button" onclick="applyInput()">적용</button>
+    </form>
+    <div id="canvasContainer"></div>
+    <script>
+        let angle;
+        let bob;
+        let len = 200;
+        let origin;
+        let w = 0;
+        let a = 0;
+        let gravity;
 
-<script>
-    let angle;
-    let bob;
-    let len;
-    let origin;
-    let w = 0;
-    let a = 0;
-    let gravity;
+        function setup() {
+            let cnv = createCanvas(600, 400);
+            cnv.parent('canvasContainer');
+            origin = createVector(300, 0);
+            angle = PI / 4;
+            bob = createVector();
+        }
 
-    function setup() {
-        let cnv = createCanvas(600, 400);
-        cnv.parent('canvasContainer');
-        origin = createVector(300, 0);
-        angle = PI / 4;
-        bob = createVector();
+        function draw() {
+            background(220);
 
-        // 입력 필드의 값을 가져와 len 변수에 초기화
-        len = parseFloat(document.getElementById("numberInput").value);
-    }
+            gravity = 100;
+            a = (-1 * gravity * sin(angle)) / (len * len);
+            w += a;
+            angle += w;
 
-    function draw() {
-        background(220);
+            document.frm.angle.value = "angle = " + Math.round(angle * 57.2958 * 10) / 10;
 
-        gravity = 100;
-        a = (-1 * gravity * sin(angle)) / (len * len);
-        w += a;
-        angle += w;
+            bob.x = len * sin(angle) + origin.x;
+            bob.y = len * cos(angle) + origin.y;
 
-        bob.x = len * sin(angle) + origin.x;
-        bob.y = len * cos(angle) + origin.y;
+            stroke(0);
+            strokeWeight(8);
+            fill(255);
+            line(origin.x, origin.y, bob.x, bob.y);
+            circle(bob.x, bob.y, 64);
+        }
 
-        stroke(0);
-        strokeWeight(8);
-        fill(255);
-        line(origin.x, origin.y, bob.x, bob.y);
-        circle(bob.x, bob.y, 64);
-    }
-
-    // 입력 필드의 값이 변경될 때마다 len 변수 업데이트
-    document.getElementById("numberInput").addEventListener("change", function() {
-        len = parseFloat(document.getElementById("numberInput").value);
-    });
-</script>
-
+        // 숫자 입력 적용 함수
+        function applyInput() {
+            // len 값을 입력 상자에서 가져오기
+            len = parseFloat(document.getElementById("lenInput").value);
+        }
+    </script>
 </body>
-
 </html>
