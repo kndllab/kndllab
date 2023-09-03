@@ -9,7 +9,6 @@
     <form name="frm">
         <input type="number" name="angle">
         <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
-        <input type="submit" value="제출">
     </form>
     <div id="canvasContainer"></div> <!-- 여기에 캔버스가 위치하게 됩니다. -->
     <script>
@@ -36,11 +35,11 @@
             len = parseFloat(document.getElementById("lenInput").value);
 
             gravity = 100;
-            a = (-1 * gravity * sin(angle)) / (len * len);
+            a = (-1 * gravity * sin(angle)) / (len);
             w += a;
             angle += w;
 
-            document.frm.angle.value ="angle = " + Math.round(angle * 57.2958 * 10) / 10 ;
+            document.frm.angle.value = 'angle = ' + Math.round(angle * 57.2958 * 10) / 10 ;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
