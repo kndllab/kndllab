@@ -9,8 +9,9 @@
     <form name="frm">
         <input type="number" name="angle">
         <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
-        <!-- 이 버튼을 사용하여 숫자 입력 적용 -->
         <button type="button" onclick="applyInput()">적용</button>
+        <!-- 각도를 표시할 요소 추가 -->
+        <span id="angleDisplay"></span>
     </form>
     <div id="canvasContainer"></div>
     <script>
@@ -38,7 +39,8 @@
             w += a;
             angle += w;
 
-            document.frm.angle.value = "angle = " + Math.round(angle * 57.2958 * 10) / 10;
+            // 각도를 표시하는 요소 업데이트
+            document.getElementById("angleDisplay").textContent = "angle = " + Math.round(angle * 57.2958 * 10) / 10;
 
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
