@@ -38,9 +38,8 @@
                 var inputValue = parseFloat(numberInput.value); // 입력값을 부동 소수점 숫자로 파싱
 
                 if (!isNaN(inputValue)) { // 숫자가 유효한지 확인
-                    angle = PI / 4;
+                    angle = PI / inputValue;
                     alert("입력한 숫자: " + inputValue);
-                    // 또는 다른 작업 수행
                 } else {
                     alert("올바른 숫자를 입력하세요.");
                 }
