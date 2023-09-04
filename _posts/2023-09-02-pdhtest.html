@@ -26,27 +26,15 @@
         let userInput = false; // 사용자 입력 플래그
 
         function setup() {
-            let cnv = createCanvas(600, 400);
+            let cnv = createCanvas(800, 400); // 캔버스 크기 조정
             cnv.parent('canvasContainer');
-            origin = createVector(300, 0);
+            origin = createVector(400, 0); // 중앙으로 이동
             // 사용자 입력이 없을 때만 초기 각도를 45도로 설정
             if (!userInput) {
                 angle = radians(45);
             }
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
-
-            // 캔버스의 중간선 그리기
-            stroke(150);
-            strokeWeight(1);
-            line(0, height / 2, width, height / 2);
-
-            // 진자의 각도에 해당하는 선 그리기 (45도와 -45도)
-            stroke(150);
-            strokeWeight(1);
-            line(width / 2 - 50, height / 2 - 50, width / 2 + 50, height / 2 - 50);
-            line(width / 2 - 50, height / 2 + 50, width / 2 + 50, height / 2 + 50);
-            noLoop(); // 초기 선들은 한 번만 그리고 애니메이션은 멈추기
         }
 
         // 숫자 입력 적용 함수
@@ -81,12 +69,26 @@
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
 
+            // 중간선 그리기
+            stroke(150);
+            strokeWeight(1);
+            line(0, height / 2, width, height / 2);
+
+            // 각도에 해당하는 선 그리기 (45도와 -45도)
+            stroke(150);
+            strokeWeight(1);
+            line(width / 2 - len, height / 2 - len, width / 2 + len, height / 2 - len);
+            line(width / 2 - len, height / 2 + len, width / 2 + len, height / 2 + len);
+
             // 진자 그리기
             stroke(0);
             strokeWeight(8);
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
-            circle(bob.x, bob.y, 64);
+
+            // 진자 끝에 있는 원의 크기를 줄이기
+            let circleSize = 16;
+            circle(bob.x, bob.y, circleSize);
 
             // 각도를 표시하는 요소 업데이트
             document.getElementById("angleDisplay").textContent = "각도 = " + Math.round(degrees(angle) * 10) / 10 + "도";
