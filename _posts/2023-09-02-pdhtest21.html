@@ -75,15 +75,23 @@
             strokeWeight(1);
             line(width / 2, 0, width / 2, height);
 
-            // 진자의 한쪽 끝과 다른 쪽 끝을 이어주는 점선 그리기 (45도와 -45도)
+            // 45도 직선 그리기
             stroke(150);
             strokeWeight(1);
-            let endX1 = width / 2 + len * sin(angle - PI / 4);
-            let endY1 = len * cos(angle - PI / 4) + origin.y;
-            let endX2 = width / 2 + len * sin(angle + PI / 4);
-            let endY2 = len * cos(angle + PI / 4) + origin.y;
-            line(bob.x, bob.y, endX1, endY1);
-            line(bob.x, bob.y, endX2, endY2);
+            let x1 = bob.x - len / sqrt(2);
+            let y1 = bob.y + len / sqrt(2);
+            let x2 = bob.x + len / sqrt(2);
+            let y2 = bob.y - len / sqrt(2);
+            let numDashes = 20; // 점선의 세그먼트 수
+            for (let i = 0; i < numDashes; i++) {
+                let dashLength = 10; // 각 세그먼트의 길이
+                let dashSpacing = 5; // 각 세그먼트 사이의 간격
+                let dashStartX = lerp(x1, x2, i / numDashes);
+                let dashStartY = lerp(y1, y2, i / numDashes);
+                let dashEndX = lerp(x1, x2, (i + 1) / numDashes);
+                let dashEndY = lerp(y1, y2, (i + 1) / numDashes);
+                line(dashStartX, dashStartY, dashEndX, dashEndY);
+            }
 
             // 진자 그리기
             stroke(0);
