@@ -74,11 +74,13 @@
             strokeWeight(1);
             line(0, height / 2, width, height / 2);
 
-            // 각도에 해당하는 선 그리기 (45도와 -45도)
+            // 각도에 해당하는 세로 점선 그리기
             stroke(150);
             strokeWeight(1);
-            line(width / 2 - len, height / 2 - len, width / 2 + len, height / 2 - len);
-            line(width / 2 - len, height / 2 + len, width / 2 + len, height / 2 + len);
+            for (let i = -90; i <= 90; i += 45) {
+                let x = width / 2 + len * sin(radians(i));
+                line(x, 0, x, height);
+            }
 
             // 진자 그리기
             stroke(0);
