@@ -9,8 +9,7 @@
     <form name="frm">
         <!-- 각도를 표시할 요소 추가 -->
         <span id="angleDisplay"></span>
-        <input type="number" id="lenInput" placeholder="len 값을 입력하세요">
-        
+        <p>len = <input type="number" id="lenInput" placeholder="len 값을 입력하세요"></p>
         <button type="button" onclick="applyInput()">적용</button>
         
     </form>
@@ -32,11 +31,18 @@
             bob = createVector();
         }
 
+        // 숫자 입력 적용 함수
+        function applyInput() {
+            // len 값을 입력 상자에서 가져오기
+            len = parseFloat(document.getElementById("lenInput").value);
+        }
+
         function draw() {
             background(220);
 
-            gravity = 100;
-            a = (-1 * gravity * sin(angle)) / (len * len);
+            // 중력을 각도와 길이에 따라 계산
+            gravity = 0.4 * sqrt(len) * sin(angle); // 중력은 길이의 제곱근과 비례
+            a = (-1 * gravity / len) * sin(angle);
             w += a;
             angle += w;
 
@@ -53,11 +59,7 @@
             circle(bob.x, bob.y, 64);
         }
 
-        // 숫자 입력 적용 함수
-        function applyInput() {
-            // len 값을 입력 상자에서 가져오기
-            len = parseFloat(document.getElementById("lenInput").value);
-        }
+        
     </script>
 </body>
 </html>
