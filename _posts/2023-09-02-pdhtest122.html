@@ -1,4 +1,4 @@
-tree graph
+으악아ㅏ이ㅏ아ㅏㅏㅏ
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +27,9 @@ tree graph
         let userInput = false; // 사용자 입력 플래그
 
         function setup() {
-            let cnv = createCanvas(800, 400); // 캔버스 크기 조정
+            let cnv = createCanvas(600, 400);
             cnv.parent('canvasContainer');
-            origin = createVector(400, 0); // 중앙으로 이동
+            origin = createVector(300, 0);
             // 사용자 입력이 없을 때만 초기 각도를 45도로 설정
             if (!userInput) {
                 angle = radians(45);
@@ -47,8 +47,8 @@ tree graph
             // 사용자 입력 플래그 설정
             userInput = true;
             // 진자의 초기 각도와 각속도 설정
+            angle = radians(45); // 45도로 설정 (원하는 초기 각도로 변경 가능)
             w = 0; // 초기 각속도 (원하는 초기 각속도로 설정 가능)
-            loop(); // 사용자 입력 후 애니메이션 재개
         }
 
         // 주기 계산 함수
@@ -69,26 +69,11 @@ tree graph
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
 
-            // 중간선 그리기
-            stroke(150);
-            strokeWeight(1);
-            line(0, height / 2, width, height / 2);
-
-            // 각도에 해당하는 선 그리기 (45도와 -45도)
-            stroke(150);
-            strokeWeight(1);
-            line(width / 2 - len, height / 2 - len, width / 2 + len, height / 2 - len);
-            line(width / 2 - len, height / 2 + len, width / 2 + len, height / 2 + len);
-
-            // 진자 그리기
             stroke(0);
             strokeWeight(8);
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
-
-            // 진자 끝에 있는 원의 크기를 줄이기
-            let circleSize = 16;
-            circle(bob.x, bob.y, circleSize);
+            circle(bob.x, bob.y, 64);
 
             // 각도를 표시하는 요소 업데이트
             document.getElementById("angleDisplay").textContent = "각도 = " + Math.round(degrees(angle) * 10) / 10 + "도";
