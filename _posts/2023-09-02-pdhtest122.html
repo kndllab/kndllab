@@ -1,6 +1,4 @@
-박동현
-박동현
-pdh test
+dhdhdhdhdhdhdhdh
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,18 +25,16 @@ pdh test
         let gravity;
         let period; // 주기를 저장하는 변수
         let userInput = false; // 사용자 입력 플래그
-        let fixedLineLength; // 고정된 직선의 길이
 
         function setup() {
             let cnv = createCanvas(800, 400); // 캔버스 크기 조정
             cnv.parent('canvasContainer');
-            origin = createVector(width / 2, 0); // 중앙으로 이동
+            origin = createVector(400, 0); // 중앙으로 이동
 
             // 사용자 입력이 없을 때만 초기 각도와 각속도 설정
             if (!userInput) {
                 angle = radians(45); // 45도로 설정 (원하는 초기 각도로 변경 가능)
                 w = 0; // 초기 각속도 (원하는 초기 각속도로 설정 가능)
-                fixedLineLength = 300; // 고정된 직선의 길이 (캔버스 하단까지)
                 noLoop(); // 사용자 입력 전에 애니메이션 일시 중지
             }
             
@@ -72,15 +68,13 @@ pdh test
             w += a;
             angle += w;
 
-            // 고정된 직선 그리기
-            stroke(150);
-            strokeWeight(1);
-            let lineX = origin.x + fixedLineLength * sin(angle);
-            let lineY = fixedLineLength * cos(angle);
-            line(origin.x, origin.y, lineX, lineY);
-
             bob.x = len * sin(angle) + origin.x;
             bob.y = len * cos(angle) + origin.y;
+
+            // 중간 세로선 그리기
+            stroke(150);
+            strokeWeight(1);
+            line(width / 2, 0, width / 2, height);
 
             // 진자 그리기
             stroke(0);
