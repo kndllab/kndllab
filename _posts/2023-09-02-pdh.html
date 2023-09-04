@@ -23,12 +23,16 @@
         let a = 0;
         let gravity;
         let period; // 주기를 저장하는 변수
+        let userInput = false; // 사용자 입력 플래그
 
         function setup() {
             let cnv = createCanvas(600, 400);
             cnv.parent('canvasContainer');
             origin = createVector(300, 0);
-            angle = PI / 4;
+            // 사용자 입력이 없을 때만 초기 각도를 45도로 설정
+            if (!userInput) {
+                angle = radians(45);
+            }
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
         }
@@ -39,8 +43,10 @@
             len = parseFloat(document.getElementById("lenInput").value);
             calculatePeriod(); // 주기 재계산
 
+            // 사용자 입력 플래그 설정
+            userInput = true;
             // 진자의 초기 각도와 각속도 설정
-            angle = PI / 4; // 초기 각도 (원하는 초기 각도로 설정 가능)
+            angle = radians(45); // 45도로 설정 (원하는 초기 각도로 변경 가능)
             w = 0; // 초기 각속도 (원하는 초기 각속도로 설정 가능)
         }
 
