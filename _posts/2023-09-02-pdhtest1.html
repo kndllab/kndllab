@@ -1,4 +1,5 @@
-안녕하세요
+이 글은 박동현이 테스트해보는 공간입니다
+지금 단진자가 길이에 따라 주기가 바뀌는 것까지 구현을 했습니다.
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +41,11 @@
             
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
+
+            // 진자 끝과 캔버스 상단 중간점을 연결하는 초기 점선 그리기
+            stroke(150);
+            strokeWeight(1);
+            line(origin.x, origin.y, width / 2, 0);
         }
 
         // 숫자 입력 적용 함수
@@ -75,24 +81,6 @@
             stroke(150);
             strokeWeight(1);
             line(width / 2, 0, width / 2, height);
-
-            // 45도 직선 그리기
-            stroke(150);
-            strokeWeight(1);
-            let x1 = bob.x - len / sqrt(2);
-            let y1 = bob.y + len / sqrt(2);
-            let x2 = bob.x + len / sqrt(2);
-            let y2 = bob.y - len / sqrt(2);
-            let numDashes = 20; // 점선의 세그먼트 수
-            for (let i = 0; i < numDashes; i++) {
-                let dashLength = 10; // 각 세그먼트의 길이
-                let dashSpacing = 5; // 각 세그먼트 사이의 간격
-                let dashStartX = lerp(x1, x2, i / numDashes);
-                let dashStartY = lerp(y1, y2, i / numDashes);
-                let dashEndX = lerp(x1, x2, (i + 1) / numDashes);
-                let dashEndY = lerp(y1, y2, (i + 1) / numDashes);
-                line(dashStartX, dashStartY, dashEndX, dashEndY);
-            }
 
             // 진자 그리기
             stroke(0);
