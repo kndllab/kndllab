@@ -1,4 +1,4 @@
-으악아ㅏ이ㅏ아ㅏㅏㅏ
+라라라라라라라라라라라랄
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +73,8 @@
             strokeWeight(8);
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
-            circle(bob.x, bob.y, 64);
+            // 원의 크기를 줄임 (반지름을 32로 변경)
+            circle(bob.x, bob.y, 64); // 여기서 64를 32로 변경
 
             // 각도를 표시하는 요소 업데이트
             document.getElementById("angleDisplay").textContent = "각도 = " + Math.round(degrees(angle) * 10) / 10 + "도";
