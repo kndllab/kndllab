@@ -1,4 +1,3 @@
-라라라라라라라라라라라랄
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +10,14 @@
         <!-- 주기와 각도를 표시할 요소 추가 -->
         <span id="periodDisplay"></span>
         <span id="angleDisplay"></span>
-        <p>len = <input type="number" id="lenInput" placeholder="len 값을 입력하세요"></p>
+        <p>len = <input type="number" id="lenInput" placeholder="len 값을 입력하세요 (미터)"></p>
         <button type="button" onclick="applyInput()">적용</button>
     </form>
     <div id="canvasContainer"></div>
     <script>
         let angle;
         let bob;
-        let len = 200;
+        let len = 2.0; // 미터 단위로 변경
         let origin;
         let w = 0;
         let a = 0;
@@ -53,15 +52,15 @@
 
         // 주기 계산 함수
         function calculatePeriod() {
-            gravity = 0.01; // 중력 가속도
+            gravity = 9.81; // 중력 가속도 (미터/초^2)
             period = 2 * PI * sqrt(len / gravity);
-            document.getElementById("periodDisplay").textContent = "주기 = " + Math.round(period * 10) / 10;
+            document.getElementById("periodDisplay").textContent = "주기 = " + Math.round(period * 10) / 10 + " 초";
         }
 
         function draw() {
             background(220);
 
-            gravity = 0.01; // 중력 가속도
+            gravity = 9.81; // 중력 가속도 (미터/초^2)
             a = (-1 * gravity / len) * sin(angle);
             w += a;
             angle += w;
