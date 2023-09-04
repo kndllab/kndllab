@@ -1,5 +1,3 @@
-이 글은 박동현이 테스트해보는 공간입니다
-지금 단진자가 길이에 따라 주기가 바뀌는 것까지 구현을 했습니다.
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +28,7 @@
         function setup() {
             let cnv = createCanvas(800, 400); // 캔버스 크기 조정
             cnv.parent('canvasContainer');
-            origin = createVector(400, 0); // 중앙으로 이동
+            origin = createVector(width / 2, 0); // 중앙으로 이동
 
             // 사용자 입력이 없을 때만 초기 각도와 각속도 설정
             if (!userInput) {
@@ -41,11 +39,6 @@
             
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
-
-            // 진자 끝과 캔버스 상단 중간점을 연결하는 초기 점선 그리기
-            stroke(150);
-            strokeWeight(1);
-            line(origin.x, origin.y, width / 2, 0);
         }
 
         // 숫자 입력 적용 함수
@@ -87,6 +80,13 @@
             strokeWeight(8);
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
+
+            // 진자 끝을 연결하는 선 그리기
+            stroke(150);
+            strokeWeight(1);
+            let lineX = bob.x;
+            let lineY = bob.y;
+            line(lineX, lineY, width / 2, 0);
 
             // 진자 끝에 있는 원의 크기를 줄이기
             let circleSize = 16;
