@@ -1,4 +1,4 @@
-rewer1
+dsfafd
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,9 +8,10 @@ rewer1
 </head>
 <body>
     <form name="frm">
-        <!-- 주기와 각도를 표시할 요소 추가 -->
+        <!-- 주기, 각도, 속도를 표시할 요소 추가 -->
         <span id="periodDisplay"></span>
         <span id="angleDisplay"></span>
+        <span id="velocityDisplay"></span>
         <p>len = <input type="number" id="lenInput" placeholder="len 값을 입력하세요 (미터)"></p>
         <button type="button" onclick="applyInput()">적용</button>
         <!-- 정지/다시실행 버튼 추가 -->
@@ -107,6 +108,10 @@ rewer1
 
             // 각도를 표시하는 요소 업데이트
             document.getElementById("angleDisplay").textContent = "각도 = " + Math.round(degrees(angle) * 10) / 10 + "도";
+            
+            // 속도 계산
+            let velocity = len * w; // 진자의 속도
+            document.getElementById("velocityDisplay").textContent = "속도 = " + Math.round(velocity * 100) / 100 + " m/s";
         }
     </script>
 </body>
