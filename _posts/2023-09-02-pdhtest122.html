@@ -1,3 +1,4 @@
+ㅂㅂㅂㅂㅂ
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,8 @@
         <span id="angleDisplay"></span>
         <p>len = <input type="number" id="lenInput" placeholder="len 값을 입력하세요 (미터)"></p>
         <button type="button" onclick="applyInput()">적용</button>
+        <button type="button" onclick="toggleSimulation()">진행/일시정지</button>
+        <button type="button" onclick="slowDown()">느리게</button> <!-- 느리게 버튼 추가 -->
     </form>
     <div id="canvasContainer"></div>
     <script>
@@ -24,6 +27,8 @@
         let gravity;
         let period; // 주기를 저장하는 변수
         let userInput = false; // 사용자 입력 플래그
+        let isPaused = false; // 일시정지 상태 플래그 추가
+        let frameSpeed = 60; // 프레임 속도 (초당 프레임 수) 추가
 
         function setup() {
             let cnv = createCanvas(600, 400);
@@ -35,6 +40,7 @@
             }
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
+            frameRate(frameSpeed); // 초기 프레임 속도 설정
         }
 
         // 숫자 입력 적용 함수
@@ -55,6 +61,26 @@
             gravity = 9.81; // 중력 가속도 (미터/초^2)
             period = 2 * PI * sqrt(len / gravity);
             document.getElementById("periodDisplay").textContent = "주기 = " + Math.round(period * 10) / 10 + " 초";
+        }
+
+        function toggleSimulation() {
+            // 시뮬레이션 일시정지 및 재개
+            if (isPaused) {
+                loop(); // 프레임 갱신 재개
+                isPaused = false;
+            } else {
+                noLoop(); // 프레임 갱신 일시정지
+                isPaused = true;
+            }
+        }
+
+        function slowDown() {
+            // 느린 프레임 속도로 변경
+            frameSpeed -= 10; // 10프레임/초씩 감소 (조절 가능)
+            if (frameSpeed < 10) {
+                frameSpeed = 10; // 프레임 속도를 최소 10프레임/초로 제한
+            }
+            frameRate(frameSpeed);
         }
 
         function draw() {
