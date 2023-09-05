@@ -1,3 +1,4 @@
+ㅇㄹㄷㄹㅇ
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,8 @@
         function calculatePeriod() {
             gravity = 0.01; // 중력 가속도
             period = 2 * PI * sqrt(len / gravity);
-            document.getElementById("periodDisplay").textContent = "주기 = " + Math.round(period * 10) / 10;
+            // 주기에 "초" 단위 추가
+            document.getElementById("periodDisplay").textContent = "주기 = " + Math.round(period * 10) / 10 + " 초";
         }
 
         function draw() {
@@ -73,7 +75,7 @@
             fill(255);
             line(origin.x, origin.y, bob.x, bob.y);
             // 원의 크기를 줄임 (반지름을 32로 변경)
-            circle(bob.x, bob.y, 20); // 여기서 64를 32로 변경
+            circle(bob.x, bob.y, 64); // 여기서 64를 32로 변경
 
             // 각도를 표시하는 요소 업데이트
             document.getElementById("angleDisplay").textContent = "각도 = " + Math.round(degrees(angle) * 10) / 10 + "도";
