@@ -1,3 +1,4 @@
+ㄷㅈㄱㅈㅂㅈㄷ
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +30,13 @@
         let userInput = false; // 사용자 입력 플래그
         let isPaused = true; // 초기에 정지 상태로 설정
         let isSlowMotion = false; // 느리게 모드 체크박스 추가
+        let maxAngle = radians(45); // 최대 각도 (45도로 초기화)
 
         function setup() {
             let cnv = createCanvas(600, 400);
             cnv.parent('canvasContainer');
             origin = createVector(300, 0);
-            angle = radians(45); // 초기 각도 설정
+            angle = maxAngle; // 초기 각도 설정
             bob = createVector();
             calculatePeriod(); // 초기 주기 계산
             if (!isPaused) {
@@ -51,6 +53,8 @@
         function applyInput() {
             // len 값을 입력 상자에서 가져오기
             len = parseFloat(document.getElementById("lenInput").value);
+            // 최대 각도 제한
+            angle = constrain(angle, -maxAngle, maxAngle);
             calculatePeriod(); // 주기 재계산
 
             // 사용자 입력 플래그 설정
