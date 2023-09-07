@@ -1,57 +1,111 @@
+dsfafd
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>뉴턴의 진자 시뮬레이션</title>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-
-        canvas {
-            border: 1px solid #333;
-        }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
+
 <body>
-    <canvas id="canvas"></canvas>
+    <div id="canvasContainer"></div>
     <script>
-        const canvas = document.getElementById("canvas");
-        const ctx = canvas.getContext("2d");
+        let ball;
+        let spring;
+        let gravity;
 
-        const pendulumLength = 100; // 진자의 길이 (픽셀)
-        const gravity = 0.2; // 중력 가속도
-        let angle = Math.PI / 4; // 초기 각도 (45도)
-        let angleVelocity = 0; // 각속도
-        const pivotX = canvas.width / 2;
-        const pivotY = canvas.height / 2;
-
-        function update() {
-            angleVelocity += (-gravity / pendulumLength) * Math.sin(angle);
-            angle += angleVelocity;
-
-            const pendulumX = pivotX + pendulumLength * Math.sin(angle);
-            const pendulumY = pivotY + pendulumLength * Math.cos(angle);
-
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
-            ctx.moveTo(pivotX, pivotY);
-            ctx.lineTo(pendulumX, pendulumY);
-            ctx.stroke();
-
-            requestAnimationFrame(update);
+        function setup() {
+            createCanvas(600, 400);
+            cnv.parent('canvasContainer');
+            origin = createVector(300, 0);
+            ball = new Ball(width / 2, 100, 20);
+            spring = new Spring(width / 2, 10, 100);
+            gravity = createVector(0, 0.2);
         }
 
-        canvas.width = 400;
-        canvas.height = 400;
-        update();
+        function draw() {
+            background(220);
+
+            // Apply gravity to the ball
+            ball.applyForce(gravity);
+
+            // Update the spring
+            spring.update(ball);
+
+            // Draw the spring
+            spring.display();
+
+            // Update and display the ball
+            ball.update();
+            ball.display();
+        }
+
+        class Ball {
+            constructor(x, y, radius) {
+                this.position = createVector(x, y);
+                this.velocity = createVector();
+                this.acceleration = createVector();
+                this.radius = radius;
+                this.damping = 0.98; // Damping to reduce energy over time
+                this.mass = 1; // Mass of the ball
+            }
+
+            applyForce(force) {
+                let f = force.copy();
+                f.div(this.mass);
+                this.acceleration.add(f);
+            }
+
+            update() {
+                this.velocity.add(this.acceleration);
+                this.velocity.mult(this.damping);
+                this.position.add(this.velocity);
+                this.acceleration.mult(0);
+
+                // Boundary conditions (bounce off the edges)
+                if (this.position.x > width - this.radius || this.position.x < this.radius) {
+                    this.velocity.x *= -1;
+                }
+                if (this.position.y > height - this.radius) {
+                    this.velocity.y *= -1;
+                    this.position.y = height - this.radius;
+                }
+            }
+
+            display() {
+                fill(255, 0, 0);
+                stroke(0);
+                strokeWeight(2);
+                ellipse(this.position.x, this.position.y, this.radius * 2);
+            }
+        }
+
+        class Spring {
+            constructor(x, y, len) {
+                this.anchor = createVector(x, y);
+                this.restLength = len;
+                this.k = 0.2; // Spring constant
+            }
+
+            update(ball) {
+                let force = p5.Vector.sub(ball.position, this.anchor); // Vector pointing from anchor to ball
+                let distance = force.mag();
+                let stretch = distance - this.restLength; // How far is it stretched or compressed
+                force.normalize();
+                force.mult(-1 * this.k * stretch); // Hooke's law
+                ball.applyForce(force);
+            }
+
+            display() {
+                fill(0);
+                stroke(0);
+                strokeWeight(4);
+                line(this.anchor.x, this.anchor.y, ball.position.x, ball.position.y);
+            }
+        }
+
     </script>
 </body>
+
 </html>
