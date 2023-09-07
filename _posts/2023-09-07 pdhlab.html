@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+
+<body>
+    <div id="canvasContainer"></div>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const pendulumLength = 100; // 진자의 길이 (픽셀)
+        const gravity = 0.2; // 중력 가속도
+        let angle = Math.PI / 4; // 초기 각도 (45도)
+        let angleVelocity = 0; // 각속도
+        const pivotX = canvas.width / 2;
+        const pivotY = canvas.height / 2;
+
+        function update() {
+            angleVelocity += (-gravity / pendulumLength) * Math.sin(angle);
+            angle += angleVelocity;
+
+            const pendulumX = pivotX + pendulumLength * Math.sin(angle);
+            const pendulumY = pivotY + pendulumLength * Math.cos(angle);
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(pivotX, pivotY);
+            ctx.lineTo(pendulumX, pendulumY);
+            ctx.stroke();
+
+            requestAnimationFrame(update);
+        }
+
+        canvas.width = 400;
+        canvas.height = 400;
+        update();
+
+    </script>
+</body>
+
+</html>
