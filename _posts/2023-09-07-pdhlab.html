@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-</head>
+    <title>뉴턴의 진자 시뮬레이션</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
 
+        canvas {
+            border: 1px solid #333;
+        }
+    </style>
+</head>
 <body>
-    <div id="canvasContainer"></div>
+    <canvas id="canvas"></canvas>
     <script>
         const canvas = document.getElementById("canvas");
         const ctx = canvas.getContext("2d");
@@ -19,11 +32,6 @@
         let angleVelocity = 0; // 각속도
         const pivotX = canvas.width / 2;
         const pivotY = canvas.height / 2;
-        function setup() {
-            let cnv = createCanvas(600, 400);
-            cnv.parent('canvasContainer');
-            origin = createVector(300, 0);
-        }
 
         function update() {
             angleVelocity += (-gravity / pendulumLength) * Math.sin(angle);
@@ -44,8 +52,6 @@
         canvas.width = 400;
         canvas.height = 400;
         update();
-
     </script>
 </body>
-
 </html>
