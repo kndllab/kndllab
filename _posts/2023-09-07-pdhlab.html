@@ -1,4 +1,3 @@
-dhdhdh
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,9 +15,8 @@ dhdhdh
         let gravity;
 
         function setup() {
-            createCanvas(600, 400);
-            cnv.parent('canvasContainer');
-            origin = createVector(300, 0);
+            let cnv = createCanvas(600, 400);
+            cnv.parent('canvasContainer'); // 'cnv'를 'canvasContainer' 요소에 추가
             ball = new Ball(width / 2, 100, 20);
             spring = new Spring(width / 2, 10, 100);
             gravity = createVector(0, 0.2);
