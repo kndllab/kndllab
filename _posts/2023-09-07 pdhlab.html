@@ -19,6 +19,11 @@
         let angleVelocity = 0; // 각속도
         const pivotX = canvas.width / 2;
         const pivotY = canvas.height / 2;
+        function setup() {
+            let cnv = createCanvas(600, 400);
+            cnv.parent('canvasContainer');
+            origin = createVector(300, 0);
+        }
 
         function update() {
             angleVelocity += (-gravity / pendulumLength) * Math.sin(angle);
